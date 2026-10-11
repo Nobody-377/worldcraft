@@ -1,26 +1,76 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --forest-teal: #3D5E59;
+    --deep-teal: #304C48;
+    --retro-cream: #E8E8DA;
+    --canvas-cream: #FAF9F0;
+    --arcade-yellow: #F5BD2D;
+    --pixel-coral: #E98083;
+    --pixel-blue: #8BB4DE;
+    --dark-outline: #171D1B;
+    --grid-dot: #D2D2BC;
   }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--deep-teal);
+  color: var(--dark-outline);
+  font-family: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Subtle pixel dot pattern for the cream canvas */
+.pixel-canvas-grid {
+  background-color: #FAF9F0;
+  background-image: radial-gradient(#D2D2BC 1.5px, transparent 1.5px);
+  background-size: 20px 20px;
+}
+
+/* Retro arcade hard-edge shadow utilities */
+.retro-border {
+  border: 2px solid var(--dark-outline);
+}
+
+.retro-shadow {
+  box-shadow: 3px 3px 0px var(--dark-outline);
+}
+
+.retro-shadow-sm {
+  box-shadow: 2px 2px 0px var(--dark-outline);
+}
+
+.retro-shadow-lg {
+  box-shadow: 4px 4px 0px var(--dark-outline);
+}
+
+/* Tactile 8-bit button press depression */
+.retro-press {
+  transition: transform 0.08s ease, box-shadow 0.08s ease;
+}
+
+.retro-press:active:not(:disabled) {
+  transform: translate(2px, 2px);
+  box-shadow: 0px 0px 0px var(--dark-outline);
+}
+
+/* Stepped pixel corner decoration motif */
+.pixel-steps {
+  position: relative;
+}
+
+.pixel-steps::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 12px;
+  height: 12px;
+  background:
+    linear-gradient(to right, transparent 66.6%, var(--dark-outline) 66.6%),
+    linear-gradient(to top, transparent 66.6%, var(--dark-outline) 66.6%);
+  background-size: 6px 6px;
+  pointer-events: none;
 }
